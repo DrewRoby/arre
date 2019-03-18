@@ -1,0 +1,35 @@
+To pass values into a template, pass a dictionary of values into your render() command in views.py, e.g.
+def index(request):
+    return render(request, 'listings/listings.html', {
+        'name':'Drew'
+    })
+and now within listings.html, you can put {{ name }} to return "Drew" wherever you need it.
+
+To grab something from the database:
+	from .models import Listing
+
+then within the def index(request):
+	listings = Listing.objects.all()
+	context = {
+		'listings': listings
+		}
+	return render(request, 'listings/listings.html', context)
+	
+The entry point for any data you want to have in an app is views.py.  You need to import the model from the given app (e.g. from listings.model import Listing, or if you're in the listings app, from .model import Listing)
+
+in the html, {% this accesses the python code via jinja %}, whereas {{ this.accesses.the.context.you.passed.in }}
+
+urls.py: the urlpatterns are 
+path('url route extended from appname; appears in url bar', views.method_to_call, name='thing you want to name it to call it in the html by putting it in tags e.g. {% url 'my_thing' %}')
+
+To grab a list of things from the database (7.45):
+	1. in views.py: 
+		a. from [app].models import [Model]
+		b. inside of def target_page(request):
+			> my_list = [Model].objects.[order_by, filter, &c]
+			> context = { 'my_list': my_list }
+		c. return render(request, 'target.html', context)
+	2. in target.html:
+		a. {% for i in my_list %}
+		b.  <li>{{ i.target_thing }}</li>
+		
