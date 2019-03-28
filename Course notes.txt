@@ -32,4 +32,16 @@ To grab a list of things from the database (7.45):
 	2. in target.html:
 		a. {% for i in my_list %}
 		b.  <li>{{ i.target_thing }}</li>
-		
+
+To grab a list of things from the database with a GET request(7.46):
+	1. in views.py:
+		a. queryset_list = [Model].objects.[order by, filter, w/e]
+		b. if [e.g. 'keywords'] in request.GET:
+			  keywords = request.GET['keywords']
+			  if keywords: (so it's not a blank field)
+				queryset_list = queryset_list.filter[description__icontains=keywords] (Note the double underscore before icontains)
+				
+Passing in search terms from forms:
+	in Context, `'values': request.GET` gives you, e.g., if "pool" is in keywords, then request.GET keywords should be available as values.keywords.
+
+<form> elements for user registration need to have actions (e.g. {% url 'login' %}) and method="POST"
