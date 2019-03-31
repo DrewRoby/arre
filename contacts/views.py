@@ -30,8 +30,8 @@ def contact(request):
         send_mail(
             'Listing inquiry: ' + listing + '-' + name,
             name + ' has requested more information about ' + listing + '.  Their message: \n\n' + message,
-            'themomanon@gmail.com',
-            ['drew.roby@gmail.com']
+            '',
+            ['']
 
         )
 
