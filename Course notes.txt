@@ -47,5 +47,4 @@ Passing in search terms from forms:
 <form> elements for user registration need to have action= to the route you want them to go to (e.g. {% url 'login' %}) and method="POST"
 
 in your main settings.py, when you import messages, you assign a CSS class (e.g. bootstrap's 'danger') to a message type (e.g. messages.ERROR)
-
 Using "[Model].objects" in python automatically fetches from the database (!)
